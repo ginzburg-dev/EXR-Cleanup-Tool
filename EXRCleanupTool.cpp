@@ -71,9 +71,9 @@ bool initializeOptions (int argc, char* argv[])
 
 // Write image
 void writeRgba (const char fileName[],
-				const Rgba *pixels,
-				int width,
-				int height)
+		const Rgba *pixels,
+		int width,
+		int height)
 {
 	RgbaOutputFile file (fileName, width, height, WRITE_RGBA);
 	file.setFrameBuffer (pixels,  1, width);
@@ -82,9 +82,9 @@ void writeRgba (const char fileName[],
 
 // Read image
 void readImage (const char fileName[],
-				Array2D<Rgba> &pixels,
-				int &width,
-				int &height)
+		Array2D<Rgba> &pixels,
+		int &width,
+		int &height)
 {
 	RgbaInputFile file (fileName);
 	Box2i dw = file.dataWindow();
@@ -111,11 +111,11 @@ bool headerInfo(const char fileName[])
 	return isStandard;
 }
 
-void writeImage32bit(const char fileName[],
-					Array2D<RgbaF> &pixels,
-					int &width,
-					int &height,
-					Box2i &dataWindow)
+void writeImage32bit  ( const char fileName[],
+			Array2D<RgbaF> &pixels,
+			int &width,
+			int &height,
+			Box2i &dataWindow)
 {
 	width  = dataWindow.max.x - dataWindow.min.x + 1;
 	height = dataWindow.max.y - dataWindow.min.y + 1;
@@ -133,38 +133,39 @@ void writeImage32bit(const char fileName[],
 	OutputFile file (fileName, header);
 
 	FrameBuffer frameBuffer;
-	frameBuffer.insert ("R",								// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].r,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert ("R",				// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].r,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
 	
-	frameBuffer.insert ("G",								// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].g,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
-
-	frameBuffer.insert ("B",								// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].b,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
-
-	frameBuffer.insert ("A",								// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].a,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert ("G",				// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].g,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
+	
+	frameBuffer.insert ("B",				// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].b,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
+	
+	frameBuffer.insert ("A",				// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].a,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
+	
 	file.setFrameBuffer (frameBuffer);
 	file.writePixels (dataWindow.max.y - dataWindow.min.y + 1);
 }
 
 void readImage32bit (const char fileName[],
-					Array2D<RgbaF> &pixels,
-					int &width,
-					int &height,
-					Box2i &dataWindow)
+		Array2D<RgbaF> &pixels,
+		int &width,
+		int &height,
+		Box2i &dataWindow)
 {
 	InputFile file (fileName);
 	Box2i dw = file.header().dataWindow();
@@ -180,29 +181,29 @@ void readImage32bit (const char fileName[],
 	string xB = "B";
 	string xA = "A";
 	FrameBuffer frameBuffer;
-	frameBuffer.insert (xR,									// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].r,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert (xR,					// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].r,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
 	
-	frameBuffer.insert (xG,									// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].g,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert (xG,					// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].g,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
 	
-	frameBuffer.insert (xB,									// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].b,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert (xB,					// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].b,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
 	
-	frameBuffer.insert (xA,									// name
-						Slice (Imf::FLOAT,					// type
-						(char *) &pixels[-dy][-dx].a,		// base
-						sizeof (pixels[0][0]) * 1,			// xStride
-						sizeof (pixels[0][0]) * width));	// yStride
+	frameBuffer.insert (xA,					// name
+			Slice (Imf::FLOAT,			// type
+			(char *) &pixels[-dy][-dx].a,		// base
+			sizeof (pixels[0][0]) * 1,		// xStride
+			sizeof (pixels[0][0]) * width));	// yStride
 	
 	file.setFrameBuffer (frameBuffer);
 	file.readPixels (dw.min.y, dw.max.y);
