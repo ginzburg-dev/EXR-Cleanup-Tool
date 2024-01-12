@@ -4,19 +4,15 @@
 //
 ////////////////////////////////////////////////////////////////////
 
-#include <iostream>
 #include <ctime>
 #include <cmath>
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdlib.h> 
 #include <algorithm>
-#include <ImfRgbaFile.h>
 #include <ImfInputFile.h>
 #include <ImfOutputFile.h>
 #include <ImfStringAttribute.h>
 #include <ImfMatrixAttribute.h>
-#include <ImfArray.h>
 #include <half.h>
 #include <float.h>
 #include <iostream>
@@ -33,7 +29,6 @@
 #include <ImfThreading.h>
 #include <IlmThread.h>
 #include <Iex.h>
-#include <iostream>
 #include <cassert>
 #include <stdio.h>
 #include <vector>
