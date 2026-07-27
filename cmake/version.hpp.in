@@ -1,0 +1,3 @@
+#pragma once
+
+#define EXR_CLEANUP_VERSION "@PROJECT_VERSION@"
