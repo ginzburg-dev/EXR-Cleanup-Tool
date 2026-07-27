@@ -36,7 +36,7 @@ struct RunSummary {
 void print_usage(std::ostream& output) {
     output
         << "EXR Cleanup Tool " << EXR_CLEANUP_VERSION << '\n'
-        << "Safely remove RenderMan variance channels from OpenEXR files.\n\n"
+        << "CLI for removing RenderMan variance channels from OpenEXR files.\n\n"
         << "Usage:\n"
         << "  exr-cleanup [options] <file-or-directory>\n\n"
         << "Options:\n"

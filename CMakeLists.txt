@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 project(
     EXRCleanupTool
     VERSION 2.0.0
-    DESCRIPTION "Safely remove RenderMan variance channels from OpenEXR files"
+    DESCRIPTION "CLI for removing RenderMan variance channels from OpenEXR files"
     LANGUAGES CXX
 )
 

@@ -3,7 +3,7 @@
 [![CI](https://github.com/ginzburg-dev/EXR-Cleanup-Tool/actions/workflows/ci.yml/badge.svg)](https://github.com/ginzburg-dev/EXR-Cleanup-Tool/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Removes RenderMan variance channels from OpenEXR files.
+CLI for removing RenderMan variance channels from OpenEXR files.
 
 ## How it works
 
