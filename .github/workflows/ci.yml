@@ -1,0 +1,62 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+permissions:
+    contents: read
+
+jobs:
+    build-and-test:
+        name: ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, macos-latest, windows-latest]
+
+        steps:
+            -
+                name: Check out repository
+                uses: actions/checkout@v4
+
+            -
+                name: Install OpenEXR (Ubuntu)
+                if: runner.os == 'Linux'
+                run: sudo apt-get update && sudo apt-get install --yes libopenexr-dev
+
+            -
+                name: Install OpenEXR (macOS)
+                if: runner.os == 'macOS'
+                run: brew install openexr
+
+            -
+                name: Install OpenEXR (Windows)
+                if: runner.os == 'Windows'
+                run: vcpkg install openexr:x64-windows
+
+            -
+                name: Configure (Unix)
+                if: runner.os != 'Windows'
+                run: >
+                    cmake -S . -B build
+                    -DCMAKE_BUILD_TYPE=Release
+                    -DEXR_CLEANUP_WARNINGS_AS_ERRORS=ON
+
+            -
+                name: Configure (Windows)
+                if: runner.os == 'Windows'
+                run: >
+                    cmake -S . -B build
+                    -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+                    -DEXR_CLEANUP_WARNINGS_AS_ERRORS=ON
+
+            -
+                name: Build
+                run: cmake --build build --config Release --parallel
+
+            -
+                name: Test
+                run: ctest --test-dir build --build-config Release --output-on-failure

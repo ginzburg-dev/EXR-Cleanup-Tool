@@ -1,0 +1,26 @@
+BasedOnStyle: Google
+AccessModifierOffset: -4
+AlignAfterOpenBracket: DontAlign
+AlignOperands: DontAlign
+BreakBeforeBinaryOperators: NonAssignment
+ColumnLimit: 100
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+DerivePointerAlignment: false
+IndentCaseLabels: true
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^"'
+    Priority: 1
+    SortPriority: 1
+  - Regex: '^<(Imath|OpenEXR)/'
+    Priority: 3
+    SortPriority: 3
+  - Regex: '^<'
+    Priority: 2
+    SortPriority: 2
+IndentWidth: 4
+PointerAlignment: Left
+SortIncludes: CaseSensitive
+TabWidth: 4
+UseTab: Never

@@ -1,0 +1,16 @@
+# Build output
+/build/
+/out/
+/cmake-build-*/
+/compile_commands.json
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Cleanup artifacts
+*.exr.bak
+.*.exr.tmp-*
+.*.exr.rollback-*
